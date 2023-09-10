@@ -7,6 +7,7 @@ export type ColorType = {
   BLACK: string;
   WHITE: string;
   BORDER: string;
+  GREEN: string;
   CARDS: {
     GRAY: string;
     ORANGE: string;
