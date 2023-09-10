@@ -14,6 +14,11 @@ const StyledPricingPageContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  // on mobile devices, padding is 20px
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
 `;
 
 const SelectedInformationWrapper = styled.div`
