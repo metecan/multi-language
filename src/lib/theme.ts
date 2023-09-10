@@ -7,6 +7,7 @@ export const AppColors: ColorType = {
   BLACK: '#000000',
   WHITE: '#FFFFFF',
   BORDER: '#d4d4d8',
+  GREEN: '#059669',
   CARDS: {
     GRAY: '#A1A1AA',
     ORANGE: '#F59E0B',

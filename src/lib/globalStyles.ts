@@ -3,6 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle`
   body {
     background-color: ${({ theme }) => theme.colors.BACKGROUND};
+    color: ${({ theme }) => theme.colors.TEXT};
     font-family: ${({ theme }) => theme.fontFamilies.default};
   }
 
