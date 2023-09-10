@@ -15,7 +15,6 @@ const StyledPricingPageContainer = styled.div`
   justify-content: center;
   align-items: center;
 
-  // on mobile devices, padding is 20px
   @media (max-width: 768px) {
     padding: 20px;
   }
