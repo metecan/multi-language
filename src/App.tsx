@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import Navbar from './components/Navbar/Navbar';
+import Navbar from './components/Navbar';
 import Pricing from './pages/Pricing';
 
 interface AppProps {}
