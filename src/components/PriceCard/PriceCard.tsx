@@ -1,3 +1,5 @@
+import React from 'react';
+
 import type { FC } from 'react';
 import LinkButton from '../LinkButton';
 import SvgTick from '../Icons/Tick';
@@ -12,16 +14,19 @@ import {
   StyledListItem,
   StyledButtonWrapper,
   StyledBadge,
+  StyledMonth,
 } from './PriceCard.styles';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, FormattedNumber } from 'react-intl';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../stores';
 
 interface PriceCardProps {
-  title: string | React.ReactNode;
-  description: string | React.ReactNode;
-  price: string | React.ReactNode;
+  title: string;
+  description: string;
+  price: number;
   isCustomPrice?: boolean;
-  features: string[] | React.ReactNode[];
-  featuresTitle?: string | React.ReactNode;
+  features: string[];
+  featuresTitle?: string;
   color: string;
   isPopular?: boolean;
 }
@@ -36,25 +41,43 @@ const PriceCard: FC<PriceCardProps> = ({
   features,
   isPopular,
 }) => {
+  const language = useSelector((state: RootState) => state.language.currentLanguage);
+
   return (
     <StyledPriceCard color={color}>
-      <StyledCardTitle>{title}</StyledCardTitle>
-      <StyledCardDescription>{description}</StyledCardDescription>
+      <StyledCardTitle>
+        <FormattedMessage id={title} />
+      </StyledCardTitle>
+      <StyledCardDescription>
+        <FormattedMessage id={description} />
+      </StyledCardDescription>
 
       <StyledPrice>
-        <StyledAmount>{price}</StyledAmount>
-        {!isCustomPrice && (
-          <span>
-            / <FormattedMessage id="cards.month" />
-          </span>
-        )}
+        <StyledAmount>
+          {isCustomPrice ? (
+            <FormattedMessage id="cards.custom" />
+          ) : (
+            <React.Fragment>
+              <FormattedNumber value={price} style="currency" currency={language === 'en' ? 'USD' : 'TRY'} />
+              <StyledMonth>
+                /
+                <FormattedMessage id="cards.month" />
+              </StyledMonth>
+            </React.Fragment>
+          )}
+        </StyledAmount>
       </StyledPrice>
 
-      <StyledFeatureListTitle>{featuresTitle}</StyledFeatureListTitle>
+      <StyledFeatureListTitle>
+        <FormattedMessage id={featuresTitle} />
+      </StyledFeatureListTitle>
       <StyledUList>
         {features.map((feature, index) => (
           <StyledListItem key={index}>
-            <SvgTick /> <span>{feature}</span>
+            <SvgTick />
+            <span>
+              <FormattedMessage id={feature} />
+            </span>
           </StyledListItem>
         ))}
       </StyledUList>

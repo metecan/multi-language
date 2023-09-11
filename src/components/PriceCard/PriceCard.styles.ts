@@ -52,6 +52,11 @@ export const StyledAmount = styled.span`
   margin-right: 8px;
 `;
 
+export const StyledMonth = styled.span`
+  font-size: 16px;
+  font-weight: ${({ theme }) => theme.fontWeights.regular};
+`;
+
 export const StyledFeatureListTitle = styled.h4`
   font-size: 16px;
   font-weight: ${({ theme }) => theme.fontWeights.semibold};
