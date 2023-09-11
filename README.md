@@ -19,6 +19,10 @@ The app is a pricing page that supports multi-language and multi-currency.
 3. Run `yarn dev`
 4. Open `http://localhost:5173` in your browser
 
+OR
+
+1. Go to [https://dataguess-9.vercel.app/](https://dataguess-9.vercel.app/) in your browser
+
 ## How to use
 
 1. Click the language selectbox on the top center to change the language.
