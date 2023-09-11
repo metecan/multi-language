@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const StyledPriceCard = styled.div<{ color: string }>`
-  width: 288px;
-  height: 480px;
+  width: 300px;
+  height: 496px;
   background: ${({ theme }) => theme.colors.WHITE};
   border-radius: 8px;
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.08);
@@ -56,7 +56,7 @@ export const StyledFeatureListTitle = styled.h4`
   font-size: 16px;
   font-weight: ${({ theme }) => theme.fontWeights.semibold};
   line-height: 1.2;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
 `;
 
 export const StyledUList = styled.ul`

@@ -13,45 +13,62 @@ import {
   StyledButtonWrapper,
   StyledBadge,
 } from './PriceCard.styles';
+import { FormattedMessage } from 'react-intl';
 
 interface PriceCardProps {
-  title: string;
-  description: string;
-  price: number | 'custom';
-  features: string[];
-  featuresTitle?: string;
+  title: string | React.ReactNode;
+  description: string | React.ReactNode;
+  price: string | React.ReactNode;
+  isCustomPrice?: boolean;
+  features: string[] | React.ReactNode[];
+  featuresTitle?: string | React.ReactNode;
   color: string;
-  popular?: boolean;
+  isPopular?: boolean;
 }
 
-const PriceCard: FC<PriceCardProps> = ({ color, title, description, price, featuresTitle, features, popular }) => {
+const PriceCard: FC<PriceCardProps> = ({
+  color,
+  title,
+  description,
+  price,
+  isCustomPrice,
+  featuresTitle,
+  features,
+  isPopular,
+}) => {
   return (
     <StyledPriceCard color={color}>
       <StyledCardTitle>{title}</StyledCardTitle>
       <StyledCardDescription>{description}</StyledCardDescription>
-      {price !== 'custom' && (
-        <StyledPrice>
-          <StyledAmount>${price}</StyledAmount> / month
-        </StyledPrice>
-      )}
-      {price === 'custom' && (
-        <StyledPrice>
-          <StyledAmount>Custom</StyledAmount>
-        </StyledPrice>
-      )}
+
+      <StyledPrice>
+        <StyledAmount>{price}</StyledAmount>
+        {!isCustomPrice && (
+          <span>
+            / <FormattedMessage id="cards.month" />
+          </span>
+        )}
+      </StyledPrice>
+
       <StyledFeatureListTitle>{featuresTitle}</StyledFeatureListTitle>
       <StyledUList>
-        {features.map(feature => (
-          <StyledListItem>
+        {features.map((feature, index) => (
+          <StyledListItem key={index}>
             <SvgTick /> <span>{feature}</span>
           </StyledListItem>
         ))}
       </StyledUList>
 
       <StyledButtonWrapper>
-        <LinkButton href="https://github.com/metecan/dataguess-9" label="View Source Code" />
+        <LinkButton href="https://github.com/metecan/dataguess-9">
+          <FormattedMessage id="app.viewSourceCode" />
+        </LinkButton>
       </StyledButtonWrapper>
-      {popular && <StyledBadge>Most Popular</StyledBadge>}
+      {isPopular && (
+        <StyledBadge>
+          <FormattedMessage id="cards.mostPopular" />
+        </StyledBadge>
+      )}
     </StyledPriceCard>
   );
 };
