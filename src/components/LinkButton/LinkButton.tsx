@@ -3,14 +3,14 @@ import type { FC } from 'react';
 import { StyledAnchor } from './LinkButton.styles';
 
 interface LinkButtonProps {
-  label: string;
+  children: React.ReactNode;
   href: string;
 }
 
-const LinkButton: FC<LinkButtonProps> = ({ label, href }) => {
+const LinkButton: FC<LinkButtonProps> = ({ children, href }) => {
   return (
     <StyledAnchor href={href} target="_blank">
-      {label}
+      {children}
     </StyledAnchor>
   );
 };
