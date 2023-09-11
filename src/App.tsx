@@ -1,15 +1,14 @@
+import React from 'react';
 import type { FC } from 'react';
 import Navbar from './components/Navbar';
 import Pricing from './pages/Pricing';
 
-interface AppProps {}
-
-const App: FC<AppProps> = () => {
+const App: FC = () => {
   return (
-    <div>
+    <React.Fragment>
       <Navbar />
       <Pricing />
-    </div>
+    </React.Fragment>
   );
 };
 export default App;
