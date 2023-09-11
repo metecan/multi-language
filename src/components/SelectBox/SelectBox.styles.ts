@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import SvgChevron from '../Icons/Chevron';
 
-export const StyledSelectboxWrapper = styled.div<{ isOpen?: boolean }>`
+export const StyledSelectboxWrapper = styled.div<{ $isOpen?: boolean }>`
   position: relative;
   width: 160px;
   height: 100%;
@@ -17,8 +16,8 @@ export const StyledSelectboxWrapper = styled.div<{ isOpen?: boolean }>`
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  border-bottom-left-radius: ${({ isOpen }) => (isOpen ? '0px' : '20px')};
-  border-bottom-right-radius: ${({ isOpen }) => (isOpen ? '0px' : '20px')};
+  border-bottom-left-radius: ${({ $isOpen }) => ($isOpen ? '0px' : '20px')};
+  border-bottom-right-radius: ${({ $isOpen }) => ($isOpen ? '0px' : '20px')};
 `;
 
 export const StyledSelectboxDefaultOption = styled.div`
@@ -36,12 +35,12 @@ export const StyledSelectboxDefaultOption = styled.div`
   }
 `;
 
-export const StyledSvgChevron = styled(SvgChevron)<{ isOpen: boolean }>`
-  transform: ${({ isOpen }) => (isOpen ? 'rotate(180deg)' : 'rotate(0deg)')};
+export const StyledIconWrapper = styled.div<{ $isOpen?: boolean }>`
+  transform: ${({ $isOpen }) => ($isOpen ? 'rotate(180deg)' : 'rotate(0deg)')};
   transition: transform 0.3s ease-in-out;
 `;
 
-export const StyledSelectboxOptionsWrapper = styled.div<{ isOpen?: boolean }>`
+export const StyledSelectboxOptionsWrapper = styled.div<{ $isOpen?: boolean }>`
   position: absolute;
   top: 100%;
   left: -1px;
@@ -54,10 +53,10 @@ export const StyledSelectboxOptionsWrapper = styled.div<{ isOpen?: boolean }>`
   align-items: flex-start;
   justify-content: center;
   cursor: pointer;
-  visibility: ${({ isOpen }) => (isOpen ? 'visible' : 'hidden')};
+  visibility: ${({ $isOpen }) => ($isOpen ? 'visible' : 'hidden')};
 
-  border-bottom-left-radius: ${({ isOpen }) => (isOpen ? '20px' : '0px')};
-  border-bottom-right-radius: ${({ isOpen }) => (isOpen ? '20px' : '0px')};
+  border-bottom-left-radius: ${({ $isOpen }) => ($isOpen ? '20px' : '0px')};
+  border-bottom-right-radius: ${({ $isOpen }) => ($isOpen ? '20px' : '0px')};
 `;
 
 export const StyledSelectboxOption = styled.div<{ selected?: boolean }>`

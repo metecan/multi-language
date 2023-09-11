@@ -1,13 +1,18 @@
 import type { FC } from 'react';
 import React from 'react';
 import {
+  StyledIconWrapper,
   StyledOptionImage,
   StyledSelectboxDefaultOption,
   StyledSelectboxOption,
   StyledSelectboxOptionsWrapper,
   StyledSelectboxWrapper,
-  StyledSvgChevron,
 } from './SelectBox.styles';
+import { useDispatch, useSelector } from 'react-redux';
+import { setLanguage } from '../../stores/language';
+import SvgChevron from '../Icons/Chevron';
+import { OutsideClick } from '../../utils/utils';
+import { RootState } from '../../stores';
 
 type OptionType = {
   label: string;
@@ -17,49 +22,47 @@ type OptionType = {
 
 interface SelectBoxProps {
   options: OptionType[];
-  selectedOption: OptionType['value'];
-  setSelectedOption: (value: OptionType['value']) => void;
 }
 
-const SelectBox: FC<SelectBoxProps> = ({ options, selectedOption, setSelectedOption }) => {
+const SelectBox: FC<SelectBoxProps> = ({ options }) => {
+  const [isSelectboxOpen, setIsSelectboxOpen] = React.useState(false);
+  const [selectedLanguage, setSelectedLanguage] = React.useState<OptionType>();
   const selectboxRef = React.useRef<HTMLDivElement>(null);
 
-  const [isSelectboxOpen, setIsSelectboxOpen] = React.useState(false);
-  const selectedOptionObject = options.find(option => option.value === selectedOption) || options[0];
+  const dispatch = useDispatch();
+  const selectedLanguageValue = useSelector((state: RootState) => state.language.currentLanguage);
 
   const handleSelect = (selectedValue: string) => {
-    setSelectedOption(selectedValue);
+    dispatch(setLanguage(selectedValue));
     setIsSelectboxOpen(false);
   };
 
   React.useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (selectboxRef.current && !selectboxRef.current.contains(event.target as Node)) {
-        setIsSelectboxOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
+    OutsideClick(selectboxRef, () => setIsSelectboxOpen(false));
   }, [selectboxRef]);
 
+  React.useEffect(() => {
+    const selectedLanguage = options.find(option => option.value === selectedLanguageValue);
+    setSelectedLanguage(selectedLanguage);
+  }, [selectedLanguageValue, options]);
+
   return (
-    <StyledSelectboxWrapper ref={selectboxRef} isOpen={isSelectboxOpen}>
+    <StyledSelectboxWrapper ref={selectboxRef} $isOpen={isSelectboxOpen}>
       <StyledSelectboxDefaultOption onClick={() => setIsSelectboxOpen(!isSelectboxOpen)}>
-        {selectedOptionObject.icon && (
-          <StyledOptionImage src={selectedOptionObject.icon} alt={selectedOptionObject.label} />
+        {selectedLanguage && selectedLanguage.icon && (
+          <StyledOptionImage src={selectedLanguage.icon} alt={selectedLanguage.label} />
         )}
-        <span>{selectedOptionObject.label}</span>
-        <StyledSvgChevron isOpen={isSelectboxOpen} />
+        <span>{selectedLanguage && selectedLanguage.label}</span>
+        <StyledIconWrapper $isOpen={isSelectboxOpen}>
+          <SvgChevron />
+        </StyledIconWrapper>
       </StyledSelectboxDefaultOption>
-      <StyledSelectboxOptionsWrapper isOpen={isSelectboxOpen}>
+      <StyledSelectboxOptionsWrapper $isOpen={isSelectboxOpen}>
         {options.map(option => (
           <StyledSelectboxOption
             key={option.value}
             onClick={() => handleSelect(option.value)}
-            selected={option.value === selectedOption}
+            selected={option.value === selectedLanguageValue}
           >
             {option.icon && <StyledOptionImage src={option.icon} alt={option.label} />}
             <span>{option.label}</span>
