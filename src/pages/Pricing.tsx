@@ -1,10 +1,12 @@
-import React from 'react';
 import type { FC } from 'react';
-import styled, { useTheme } from 'styled-components';
+import styled from 'styled-components';
 
 import { LanguageOptions } from '../data/languageOptions';
 import SelectBox from '../components/SelectBox';
 import PriceCard from '../components/PriceCard';
+import { FormattedMessage } from 'react-intl';
+
+import { PricesData } from '../data/pricesData';
 
 interface PricingProps {}
 
@@ -55,74 +57,32 @@ const StyledCardsWrapper = styled.div`
 `;
 
 const Pricing: FC<PricingProps> = () => {
-  const theme = useTheme();
-  const [selectedLanguage, setSelectedLanguage] = React.useState(LanguageOptions[0].value);
+  const pricesData = PricesData();
 
   return (
     <StyledPricingPageContainer>
-      <SelectBox options={LanguageOptions} selectedOption={selectedLanguage} setSelectedOption={setSelectedLanguage} />
+      <SelectBox options={LanguageOptions} />
       <SelectedInformationWrapper>
-        <StyledHero>Streamline your teamwork. Start free.</StyledHero>
-        <StyledDescription>Choose the perfect plan for your business needs</StyledDescription>
+        <StyledHero>
+          <FormattedMessage id="app.headLine" />
+        </StyledHero>
+        <StyledDescription>
+          <FormattedMessage id="app.subHeadLine" />
+        </StyledDescription>
       </SelectedInformationWrapper>
       <StyledCardsWrapper>
-        <PriceCard
-          color={theme.colors.CARDS.GRAY}
-          title="Free"
-          description="For small teams or office"
-          price={0}
-          featuresTitle="What you get:"
-          features={[
-            'Task Management',
-            'Project Planning',
-            'Team Collaboration',
-            'Notifications and Reminders',
-            'What you get',
-          ]}
-        />
-        <PriceCard
-          color={theme.colors.CARDS.ORANGE}
-          title="Starter"
-          description="Best for personal use"
-          price={8}
-          featuresTitle="All free features, plus:"
-          features={[
-            'Task Management',
-            'Project Planning',
-            'Team Collaboration',
-            'Notifications and Reminders',
-            'What you get',
-          ]}
-        />
-        <PriceCard
-          color={theme.colors.CARDS.GREEN}
-          title="Business"
-          description="Best for business use"
-          price={16}
-          featuresTitle="All Starter features, plus:"
-          features={[
-            'Task Management',
-            'Project Planning',
-            'Team Collaboration',
-            'Notifications and Reminders',
-            'What you get',
-          ]}
-          popular
-        />
-        <PriceCard
-          color={theme.colors.CARDS.PURPLE}
-          title="Enterprise"
-          description="Best for enterprise use"
-          price="custom"
-          featuresTitle="All Business features, plus:"
-          features={[
-            'Task Management',
-            'Project Planning',
-            'Team Collaboration',
-            'Notifications and Reminders',
-            'What you get',
-          ]}
-        />
+        {pricesData.map(item => (
+          <PriceCard
+            color={item.color}
+            title={item.title}
+            description={item.description}
+            price={item.price}
+            featuresTitle={item.featuresTitle}
+            features={item.features}
+            isPopular={item.isPopular}
+            isCustomPrice={item.isCustomPrice}
+          />
+        ))}
       </StyledCardsWrapper>
     </StyledPricingPageContainer>
   );
