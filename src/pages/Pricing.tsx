@@ -8,8 +8,6 @@ import { FormattedMessage } from 'react-intl';
 
 import { PricesData } from '../data/pricesData';
 
-interface PricingProps {}
-
 const StyledPricingPageContainer = styled.div`
   padding: 80px;
   display: flex;
@@ -56,7 +54,7 @@ const StyledCardsWrapper = styled.div`
   flex-wrap: wrap;
 `;
 
-const Pricing: FC<PricingProps> = () => {
+const Pricing: FC = () => {
   const pricesData = PricesData();
 
   return (
