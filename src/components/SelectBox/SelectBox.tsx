@@ -30,7 +30,7 @@ const SelectBox: FC<SelectBoxProps> = ({ options }) => {
   const selectboxRef = React.useRef<HTMLDivElement>(null);
 
   const dispatch = useDispatch();
-  const selectedLanguageValue = useSelector((state: RootState) => state.language.currentLanguage);
+  const currentLanguageValue = useSelector((state: RootState) => state.language.currentLanguage);
 
   const handleSelect = (selectedValue: string) => {
     dispatch(setLanguage(selectedValue));
@@ -42,9 +42,9 @@ const SelectBox: FC<SelectBoxProps> = ({ options }) => {
   }, [selectboxRef]);
 
   React.useEffect(() => {
-    const selectedLanguage = options.find(option => option.value === selectedLanguageValue);
+    const selectedLanguage = options.find(option => option.value === currentLanguageValue);
     setSelectedLanguage(selectedLanguage);
-  }, [selectedLanguageValue, options]);
+  }, [currentLanguageValue, options]);
 
   return (
     <StyledSelectboxWrapper ref={selectboxRef} $isOpen={isSelectboxOpen}>
@@ -62,7 +62,7 @@ const SelectBox: FC<SelectBoxProps> = ({ options }) => {
           <StyledSelectboxOption
             key={option.value}
             onClick={() => handleSelect(option.value)}
-            selected={option.value === selectedLanguageValue}
+            selected={option.value === currentLanguageValue}
           >
             {option.icon && <StyledOptionImage src={option.icon} alt={option.label} />}
             <span>{option.label}</span>
