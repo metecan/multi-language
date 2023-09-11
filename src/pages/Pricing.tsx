@@ -71,8 +71,9 @@ const Pricing: FC<PricingProps> = () => {
         </StyledDescription>
       </SelectedInformationWrapper>
       <StyledCardsWrapper>
-        {pricesData.map(item => (
+        {pricesData.map((item, index) => (
           <PriceCard
+            key={index}
             color={item.color}
             title={item.title}
             description={item.description}
