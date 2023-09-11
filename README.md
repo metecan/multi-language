@@ -1,27 +1,36 @@
-# React + TypeScript + Vite
+# Dataguess - Mid Frontend Cases (Number: 9) Multi-language Support with Redux Intl
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Used libraries
 
-Currently, two official plugins are available:
+- [Vite](https://vitejs.dev/) + [React](https://reactjs.org/) + [TypeScript](https://www.typescriptlang.org/)
+- [Redux](https://redux.js.org/)
+- [React Intl](https://formatjs.io/docs/react-intl/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Description
 
-## Expanding the ESLint configuration
+It is a simple react app that supports multi-language with redax and react-intl.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+The app is a pricing page that supports multi-language and multi-currency.
 
-- Configure the top-level `parserOptions` property like this:
+## How to run
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+1. Clone the repo
+2. Run `yarn install`
+3. Run `yarn dev`
+4. Open `http://localhost:5173` in your browser
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## How to use
+
+1. Click the language selectbox on the top center to change the language.
+
+## Figma design
+
+I edited a publicly available design that I obtained from the Figma Community and coded it.
+
+- [Figma design](<https://www.figma.com/file/G8NzMHvp4Kr9IP3JjShCUf/Dataguess-Cases-(Mid-Frontend)?type=design&node-id=1%3A122&mode=design&t=ACTicAn1CUnRuDtC-1>)
+
+## Screenshot
+
+![#1](https://res.cloudinary.com/allstar/image/upload/v1694418573/case-9_ahm26e.png)
+
+Last updated: 2023, Sep 11 ✨
