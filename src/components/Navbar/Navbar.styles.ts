@@ -41,5 +41,5 @@ export const StyledListItem = styled.li`
 `;
 
 export const StyledButtonWrapper = styled.div`
-  width: 200px;
+  width: 220px;
 `;

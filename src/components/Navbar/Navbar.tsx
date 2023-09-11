@@ -9,6 +9,7 @@ import {
   StyledNavbar,
   StyledUList,
 } from './Navbar.styles';
+import { FormattedMessage } from 'react-intl';
 
 const Navbar: FC = () => {
   return (
@@ -16,12 +17,18 @@ const Navbar: FC = () => {
       <StyledMenu>
         <StyledLogo>Dataguess</StyledLogo>
         <StyledUList>
-          <StyledListItem>Case Number: 9</StyledListItem>
-          <StyledListItem>Multi-language Support with Redux Intl</StyledListItem>
+          <StyledListItem>
+            <FormattedMessage id="app.caseNumber" />: 9
+          </StyledListItem>
+          <StyledListItem>
+            <FormattedMessage id="app.caseTitle" />
+          </StyledListItem>
         </StyledUList>
       </StyledMenu>
       <StyledButtonWrapper>
-        <LinkButton href="https://github.com/metecan/dataguess-9" label="View Source Code" />
+        <LinkButton href="https://github.com/metecan/dataguess-9">
+          <FormattedMessage id="app.viewSourceCode" />
+        </LinkButton>
       </StyledButtonWrapper>
     </StyledNavbar>
   );
