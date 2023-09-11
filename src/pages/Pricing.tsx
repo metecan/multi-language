@@ -1,11 +1,11 @@
 import type { FC } from 'react';
-import styled from 'styled-components';
-
-import { LanguageOptions } from '../data/languageOptions';
-import SelectBox from '../components/SelectBox';
-import PriceCard from '../components/PriceCard';
 import { FormattedMessage } from 'react-intl';
 
+import styled from 'styled-components';
+
+import PriceCard from '../components/PriceCard';
+import SelectBox from '../components/SelectBox';
+import { LanguageOptions } from '../data/languageOptions';
 import { PricesData } from '../data/pricesData';
 
 const StyledPricingPageContainer = styled.div`
@@ -55,6 +55,7 @@ const StyledCardsWrapper = styled.div`
 `;
 
 const Pricing: FC = () => {
+  //? Getting dummy data from data/pricesData.tsx
   const pricesData = PricesData();
 
   return (

@@ -1,11 +1,28 @@
 import { useSelector } from 'react-redux';
+
 import { useTheme } from 'styled-components';
+
 import { RootState } from '../stores';
 
+type PriceCardType = {
+  color: string;
+  title: string;
+  description: string;
+  price: number;
+  isCustomPrice?: boolean;
+  features: string[];
+  featuresTitle?: string;
+  isPopular?: boolean;
+};
+
 export const PricesData = () => {
+  //? Getting theme from styled-components
   const theme = useTheme();
 
+  //? Redux
   const language = useSelector((state: RootState) => state.language.currentLanguage);
+
+  //? dummy currency multiplier for Turkish Lira
   const multiplier = language === 'en' ? 1 : 27;
 
   return [
@@ -67,5 +84,5 @@ export const PricesData = () => {
         'cards.feat.enterprise.5',
       ],
     },
-  ];
+  ] as PriceCardType[];
 };

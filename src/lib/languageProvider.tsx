@@ -1,11 +1,10 @@
 import type { FC } from 'react';
 import { IntlProvider } from 'react-intl';
 import { useSelector } from 'react-redux';
-import { RootState } from '../stores';
 
-// Language Files
 import en from '../lang/en.json';
 import tr from '../lang/tr.json';
+import { RootState } from '../stores';
 
 interface LanguageProviderProps {
   children: React.ReactNode;

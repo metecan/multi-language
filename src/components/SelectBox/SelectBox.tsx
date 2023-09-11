@@ -1,5 +1,11 @@
 import type { FC } from 'react';
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { RootState } from '../../stores';
+import { setLanguage } from '../../stores/language';
+import { OutsideClick } from '../../utils/utils';
+import SvgChevron from '../Icons/Chevron';
 import {
   StyledIconWrapper,
   StyledOptionImage,
@@ -8,11 +14,6 @@ import {
   StyledSelectboxOptionsWrapper,
   StyledSelectboxWrapper,
 } from './SelectBox.styles';
-import { useDispatch, useSelector } from 'react-redux';
-import { setLanguage } from '../../stores/language';
-import SvgChevron from '../Icons/Chevron';
-import { OutsideClick } from '../../utils/utils';
-import { RootState } from '../../stores';
 
 type OptionType = {
   label: string;
@@ -29,18 +30,22 @@ const SelectBox: FC<SelectBoxProps> = ({ options }) => {
   const [selectedLanguage, setSelectedLanguage] = React.useState<OptionType>();
   const selectboxRef = React.useRef<HTMLDivElement>(null);
 
+  //? Redux
   const dispatch = useDispatch();
   const currentLanguageValue = useSelector((state: RootState) => state.language.currentLanguage);
 
+  //? When the user selects a language, it will dispatch the action to change the language
   const handleSelect = (selectedValue: string) => {
     dispatch(setLanguage(selectedValue));
     setIsSelectboxOpen(false);
   };
 
+  //? When the user clicks outside the selectbox, it will close
   React.useEffect(() => {
     OutsideClick(selectboxRef, () => setIsSelectboxOpen(false));
   }, [selectboxRef]);
 
+  //? When the language changes, the selectbox will update
   React.useEffect(() => {
     const selectedLanguage = options.find(option => option.value === currentLanguageValue);
     setSelectedLanguage(selectedLanguage);

@@ -1,24 +1,24 @@
-import React from 'react';
-
 import type { FC } from 'react';
-import LinkButton from '../LinkButton';
-import SvgTick from '../Icons/Tick';
-import {
-  StyledCardTitle,
-  StyledPriceCard,
-  StyledCardDescription,
-  StyledPrice,
-  StyledAmount,
-  StyledFeatureListTitle,
-  StyledUList,
-  StyledListItem,
-  StyledButtonWrapper,
-  StyledBadge,
-  StyledMonth,
-} from './PriceCard.styles';
+import React from 'react';
 import { FormattedMessage, FormattedNumber } from 'react-intl';
 import { useSelector } from 'react-redux';
+
 import { RootState } from '../../stores';
+import SvgTick from '../Icons/Tick';
+import LinkButton from '../LinkButton';
+import {
+  StyledAmount,
+  StyledBadge,
+  StyledButtonWrapper,
+  StyledCardDescription,
+  StyledCardTitle,
+  StyledFeatureListTitle,
+  StyledListItem,
+  StyledMonth,
+  StyledPrice,
+  StyledPriceCard,
+  StyledUList,
+} from './PriceCard.styles';
 
 interface PriceCardProps {
   title: string;
@@ -41,6 +41,7 @@ const PriceCard: FC<PriceCardProps> = ({
   features,
   isPopular,
 }) => {
+  //? Redux
   const language = useSelector((state: RootState) => state.language.currentLanguage);
 
   return (
